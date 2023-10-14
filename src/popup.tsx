@@ -4,15 +4,12 @@ function IndexPopup() {
   const [data, setData] = useState("")
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        padding: 16
-      }}>
+    <div className="w-48">
       <h2>
         Welcome to your
-        <a href="https://www.plasmo.com" target="_blank">
+        <a
+          href="chrome-extension://mifpjfnhegkajmcblhgnklnajgjggmkg/tabs/settings.html"
+          target="_blank">
           {" "}
           Plasmo
         </a>{" "}
