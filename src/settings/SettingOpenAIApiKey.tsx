@@ -1,6 +1,6 @@
 import { useModal } from "~src/hooks/useModal"
 
-import SettingButton from "./SettingButton"
+import TriggerButton from "../components/TriggerButton"
 import SettingItemContainer from "./SettingItemContainer"
 import SettingOpenAIApiKeyModal from "./SettingOpenAIApiKeyModal"
 import SettingTitle from "./SettingTitle"
@@ -14,7 +14,7 @@ const SettingOpenAIApiKey = () => {
         <SettingTitle title="OpenAI API key" />
         <p className="text-sm font-bold text-gray-500">設定済み</p>
       </div>
-      <SettingButton label="API keyを設定" onClick={open} />
+      <TriggerButton label="API keyを設定" onClick={open} />
       <SettingOpenAIApiKeyModal isOpen={isOpen} close={close} />
     </SettingItemContainer>
   )

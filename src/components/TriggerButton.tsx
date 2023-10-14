@@ -3,7 +3,7 @@ interface Props {
   onClick: () => void
 }
 
-const SettingButton = ({ label, onClick }: Props) => {
+const TriggerButton = ({ label, onClick }: Props) => {
   return (
     <button
       className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-indigo-600 shadow-sm hover:bg-indigo-100"
@@ -13,4 +13,4 @@ const SettingButton = ({ label, onClick }: Props) => {
   )
 }
 
-export default SettingButton
+export default TriggerButton
