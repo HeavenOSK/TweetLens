@@ -10,6 +10,7 @@
     "test": "plasmo test"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "openai": "^4.12.1",
     "outdent": "^0.8.0",
     "plasmo": "0.83.0",
