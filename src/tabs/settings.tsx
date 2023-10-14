@@ -1,8 +1,8 @@
 // chrome-extension://mifpjfnhegkajmcblhgnklnajgjggmkg/tabs/settings.html
-import SettingButton from "~src/components/SettingButton"
-import SettingItemContainer from "~src/components/SettingItemContainer"
-import SettingOpenAIApiKey from "~src/components/SettingOpenAIApiKey"
-import SettingTitle from "~src/components/SettingTitle"
+import SettingButton from "~src/settings/SettingButton"
+import SettingItemContainer from "~src/settings/SettingItemContainer"
+import SettingOpenAIApiKey from "~src/settings/SettingOpenAIApiKey"
+import SettingTitle from "~src/settings/SettingTitle"
 
 import "~style.css"
 
