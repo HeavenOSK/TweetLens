@@ -1,13 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react"
+import { useState } from "react"
 
 import BaseDialog from "~src/components/BaseDialog"
 import CancelButton from "~src/components/CancelButton"
 import ConfirmButton from "~src/components/ConfirmButton"
 import { type UseModal } from "~src/hooks/useModal"
 
-type Props = Pick<UseModal, "isOpen" | "close">
+type Props = Pick<UseModal, "isOpen" | "close"> & {
+  updateApiKey: (apiKey: string) => void
+}
 
-const SettingOpenAIApiKeyModal = ({ isOpen, close }: Props) => {
+const SettingOpenAIApiKeyModal = ({ isOpen, close, updateApiKey }: Props) => {
+  const [apiKey, setApiKey] = useState("")
   return (
     <BaseDialog isOpen={isOpen} close={close}>
       <div className="flex flex-col">
@@ -30,10 +34,21 @@ const SettingOpenAIApiKeyModal = ({ isOpen, close }: Props) => {
         <div className="flex mt-2">
           <input
             type="password"
+            value={apiKey}
             className="block flex-1 px-3 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-indigo-300 focus:ring-inset sm:text-sm sm:leading-6 focus:outline-none"
             placeholder="sk-**************"
+            onChange={(e) => setApiKey(e.target.value)}
           />
-          <ConfirmButton label="設定" onClick={() => {}} />
+          <ConfirmButton
+            label="設定"
+            onClick={() => {
+              // TODO: validationやっても良さそう
+              console.log("onClick")
+              updateApiKey(apiKey)
+              close()
+            }}
+            disabled={apiKey.length <= 3}
+          />
         </div>
       </div>
     </BaseDialog>

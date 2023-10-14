@@ -2,12 +2,17 @@ import OpenAI from "openai"
 import { outdent } from "outdent"
 import { useState } from "react"
 
-export const useChat = () => {
+type Props = {
+  apiKey?: string
+}
+export const useChat = ({ apiKey }: Props) => {
   const [result, setResult] = useState<string[] | null>(null)
 
   const streamCompletion = async (content: string) => {
+    const key = apiKey || process.env.PLASMO_PUBLIC_OPEN_AI_API_KEY
+    if (!key) return
     const openai = new OpenAI({
-      apiKey: process.env.PLASMO_PUBLIC_OPEN_AI_API_KEY,
+      apiKey: key,
       dangerouslyAllowBrowser: true
     })
     const prompt = outdent`
