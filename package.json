@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
     "@plasmohq/storage": "^1.8.0",
     "openai": "^4.12.1",
     "outdent": "^0.8.0",

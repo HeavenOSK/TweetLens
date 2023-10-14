@@ -45,7 +45,6 @@ export const useOpenAIApiKey = () => {
   }, [])
   return {
     state,
-    getOpenAIApiKey,
     setOpenAIApiKey
   }
 }

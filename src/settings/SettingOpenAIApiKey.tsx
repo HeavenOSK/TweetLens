@@ -9,8 +9,8 @@ import SettingOpenAIApiKeyModal from "./SettingOpenAIApiKeyModal"
 import SettingTitle from "./SettingTitle"
 
 const SettingOpenAIApiKey = () => {
-  const { isOpen, open, close } = useModal(true)
-  const { state, getOpenAIApiKey, setOpenAIApiKey } = useOpenAIApiKey()
+  const { isOpen, open, close } = useModal(false)
+  const { state, setOpenAIApiKey } = useOpenAIApiKey()
   return (
     <SettingItemContainer>
       <div className="flex gap-2 items-center">

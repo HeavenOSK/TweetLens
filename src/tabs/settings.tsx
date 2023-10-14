@@ -1,6 +1,7 @@
 // chrome-extension://mifpjfnhegkajmcblhgnklnajgjggmkg/tabs/settings.html
 import TriggerButton from "~src/components/TriggerButton"
 import SettingItemContainer from "~src/settings/SettingItemContainer"
+import SettingLanguage from "~src/settings/SettingLanguage"
 import SettingOpenAIApiKey from "~src/settings/SettingOpenAIApiKey"
 import SettingTitle from "~src/settings/SettingTitle"
 
@@ -34,9 +35,7 @@ const Settings = () => {
       <div className="w-full h-1 border-b border-gray-200"></div>
       <Container>
         <SettingOpenAIApiKey />
-        <InputItem title="言語設定">
-          <input type="text" className="w-full" />
-        </InputItem>
+        <SettingLanguage />
         <InputItem title="使用するモデル">
           <input type="text" className="w-full" />
         </InputItem>
