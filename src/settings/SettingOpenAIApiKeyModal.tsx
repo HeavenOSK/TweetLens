@@ -12,8 +12,13 @@ type Props = Pick<UseModal, "isOpen" | "close"> & {
 
 const SettingOpenAIApiKeyModal = ({ isOpen, close, updateApiKey }: Props) => {
   const [apiKey, setApiKey] = useState("")
+
+  const onClose = () => {
+    setApiKey("")
+    close()
+  }
   return (
-    <BaseDialog isOpen={isOpen} close={close}>
+    <BaseDialog isOpen={isOpen} close={onClose}>
       <div className="flex flex-col">
         <Dialog.Title
           as="h3"
@@ -31,7 +36,7 @@ const SettingOpenAIApiKeyModal = ({ isOpen, close, updateApiKey }: Props) => {
           で取得できます。
         </p>
 
-        <div className="flex mt-2">
+        <div className="flex mt-2 gap-1.5">
           <input
             type="password"
             value={apiKey}
@@ -45,7 +50,7 @@ const SettingOpenAIApiKeyModal = ({ isOpen, close, updateApiKey }: Props) => {
               // TODO: validationやっても良さそう
               console.log("onClick")
               updateApiKey(apiKey)
-              close()
+              onClose()
             }}
             // disabled={apiKey.length <= 3}
           />

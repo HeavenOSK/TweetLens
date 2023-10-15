@@ -9,8 +9,8 @@ const ConfirmButton = ({ label, disabled, onClick }: Props) => {
       type="button"
       className={
         !disabled
-          ? "inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400"
-          : "inline-flex w-full justify-center rounded-md bg-indigo-400 px-3 py-2 text-sm font-semibold text-indigo-200 shadow-sm cursor-not-allowed"
+          ? "inline-flex w-full justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 sm:w-auto"
+          : "inline-flex w-full justify-center rounded-md bg-indigo-400 px-3 py-2 text-sm font-semibold text-indigo-200 shadow-sm cursor-not-allowed sm:w-auto"
       }
       onClick={onClick}
       disabled={disabled != undefined ? disabled : false}>
