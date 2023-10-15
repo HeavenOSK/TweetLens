@@ -47,7 +47,7 @@ const SettingOpenAIApiKeyModal = ({ isOpen, close, updateApiKey }: Props) => {
               updateApiKey(apiKey)
               close()
             }}
-            disabled={apiKey.length <= 3}
+            // disabled={apiKey.length <= 3}
           />
         </div>
       </div>

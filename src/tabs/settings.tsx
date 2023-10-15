@@ -1,5 +1,6 @@
 // chrome-extension://mifpjfnhegkajmcblhgnklnajgjggmkg/tabs/settings.html
 import TriggerButton from "~src/components/TriggerButton"
+import SettingGptModel from "~src/settings/SettingGptModel"
 import SettingItemContainer from "~src/settings/SettingItemContainer"
 import SettingLanguage from "~src/settings/SettingLanguage"
 import SettingOpenAIApiKey from "~src/settings/SettingOpenAIApiKey"
@@ -36,12 +37,11 @@ const Settings = () => {
       <Container>
         <SettingOpenAIApiKey />
         <SettingLanguage />
-        <InputItem title="使用するモデル">
+        <SettingGptModel />
+
+        {/* <InputItem title="解説用プロンプト">
           <input type="text" className="w-full" />
-        </InputItem>
-        <InputItem title="解説用プロンプト">
-          <input type="text" className="w-full" />
-        </InputItem>
+        </InputItem> */}
       </Container>
     </div>
   )

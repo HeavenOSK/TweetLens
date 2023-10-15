@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react"
 
 import { Storage } from "@plasmohq/storage"
 
+import type { ChoiceModel } from "~src/settings/SettingList"
+
 const STORAGE_KEY_LANGUAGE = "LANGUAGE"
 const languages = [
   "en", // 英語
@@ -35,7 +37,7 @@ const languageWithLabel: LanguageWithLabel = {
   hi: "हिन्दी"
 }
 
-export type LanguageChoice = {
+export interface LanguageChoice extends ChoiceModel {
   id: Language
   name: string
 }

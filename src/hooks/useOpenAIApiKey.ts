@@ -39,12 +39,18 @@ export const useOpenAIApiKey = () => {
     }
   }
 
+  const deleteOpenAIApiKey = async () => {
+    await storage.remove(SECURE_STORAGE_KEY_OPEN_AI_API_KEY)
+    setState({ type: "loaded" })
+  }
+
   useEffect(() => {
     getOpenAIApiKey()
     return () => {}
   }, [])
   return {
     state,
-    setOpenAIApiKey
+    setOpenAIApiKey,
+    deleteOpenAIApiKey
   }
 }

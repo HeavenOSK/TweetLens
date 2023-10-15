@@ -1,5 +1,6 @@
 import { useStorage } from "@plasmohq/storage/hook"
 
+import DeleteButton from "~src/components/DeleteButton"
 import { useModal } from "~src/hooks/useModal"
 import { useOpenAIApiKey } from "~src/hooks/useOpenAIApiKey"
 
@@ -10,7 +11,7 @@ import SettingTitle from "./SettingTitle"
 
 const SettingOpenAIApiKey = () => {
   const { isOpen, open, close } = useModal(false)
-  const { state, setOpenAIApiKey } = useOpenAIApiKey()
+  const { state, setOpenAIApiKey, deleteOpenAIApiKey } = useOpenAIApiKey()
   return (
     <SettingItemContainer>
       <div className="flex gap-2 items-center">
@@ -23,7 +24,11 @@ const SettingOpenAIApiKey = () => {
           </p>
         )}
       </div>
-      <TriggerButton label="API keyを設定" onClick={open} />
+      {state.type === "loaded" && state.apiKey !== undefined ? (
+        <DeleteButton label="API Keyを削除" onClick={deleteOpenAIApiKey} />
+      ) : (
+        <TriggerButton label="API Keyを設定" onClick={open} />
+      )}
       <SettingOpenAIApiKeyModal
         isOpen={isOpen}
         close={close}
