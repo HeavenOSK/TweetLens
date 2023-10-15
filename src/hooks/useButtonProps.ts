@@ -2,9 +2,9 @@ import { useEffect, useMemo, useState } from "react"
 
 import { Storage } from "@plasmohq/storage"
 
-const STORAGE_KEY_BUTTON_PROPS = "BUTTON_PROPS"
+export const STORAGE_KEY_BUTTON_PROPS = "BUTTON_PROPS"
 
-interface ButtonProps {
+export interface ButtonProps {
   // 空文字を許容する
   buttonName: string
   // 空文字を許容する
@@ -14,18 +14,14 @@ interface ButtonProps {
 export const defaultButtonName = "ツイートを解説"
 
 export const defaultPrompt =
-  "Could you explain this tweet in a way that's easy to understand?"
-
-const defaultProps: ButtonProps = {
-  buttonName: defaultButtonName,
-  prompt: defaultPrompt
-}
+  "このツイートの意味が分からないので解説してください。"
 
 const storage = new Storage()
-
 export const useButtonProps = () => {
-  const [savedButtonProps, setSavedButtonProps] =
-    useState<ButtonProps>(defaultProps)
+  const [savedButtonProps, setSavedButtonProps] = useState<ButtonProps>({
+    buttonName: "",
+    prompt: ""
+  })
   const buttonProps = useMemo<ButtonProps>(() => {
     const buttonName = savedButtonProps?.buttonName || defaultButtonName
     const prompt = savedButtonProps?.prompt || defaultPrompt

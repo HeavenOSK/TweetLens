@@ -1,12 +1,29 @@
 import UserCircleIcon from "@heroicons/react/20/solid/UserCircleIcon"
+import { useEffect } from "react"
 
+import ResultView from "~src/components/ResultView"
 import TriggerButton from "~src/components/TriggerButton"
+import type { ButtonProps } from "~src/hooks/useButtonProps"
+import { useChat, useChatPreview } from "~src/hooks/useChat"
 
 import SettingTitle from "./SettingTitle"
 
-const SettingButtonPreview = () => {
+const content =
+  "今日のコーヒーはエチオピア産のシングルオリジン。フローラルな香りとクリアな酸味が絶妙。小さな幸せを感じる瞬間。☕️"
+const SettingButtonPreview = ({ buttonName, prompt }: ButtonProps) => {
+  const { result, previewStreamCompletion, resetResult } = useChatPreview()
+  useEffect(() => {
+    resetResult()
+  }, [prompt])
+
+  const onClick = () => {
+    previewStreamCompletion({
+      content,
+      prompt
+    })
+  }
   return (
-    <div className="flex flex-col w-80 gap-1">
+    <div className="flex flex-col gap-1 w-96">
       <SettingTitle title="プレビュー" />
       <div className="flex flex-col bg-white shadow-lg shadow-blue-gray-400 rounded-lg px-4 py-4">
         <div className="flex flex-col items-start gap-1">
@@ -23,9 +40,13 @@ const SettingButtonPreview = () => {
           <p className="text-base">
             今日のコーヒーはエチオピア産のシングルオリジン。フローラルな香りとクリアな酸味が絶妙。小さな幸せを感じる瞬間。☕️
           </p>
-          <div className="flex mt-1">
-            <TriggerButton label={"ツイートを解説"} onClick={() => {}} />
-          </div>
+          {result !== null ? (
+            <ResultView result={result} />
+          ) : (
+            <div className="flex mt-1">
+              <TriggerButton label={buttonName} onClick={onClick} />
+            </div>
+          )}
         </div>
       </div>
     </div>

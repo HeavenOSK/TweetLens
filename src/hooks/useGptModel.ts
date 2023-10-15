@@ -4,9 +4,9 @@ import { Storage } from "@plasmohq/storage"
 
 import type { ChoiceModel } from "~src/settings/SettingList"
 
-const STORAGE_KEY_GPT_MODEL = "GPT_MODEL"
+export const STORAGE_KEY_GPT_MODEL = "GPT_MODEL"
 
-const gpt4 = "gpt-4"
+export const gpt4 = "gpt-4"
 
 const gptModels = [
   "gpt-3.5-turbo-0301",

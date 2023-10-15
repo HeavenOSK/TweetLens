@@ -4,7 +4,7 @@ import { Storage } from "@plasmohq/storage"
 
 import type { ChoiceModel } from "~src/settings/SettingList"
 
-const STORAGE_KEY_LANGUAGE = "LANGUAGE"
+export const STORAGE_KEY_LANGUAGE = "LANGUAGE"
 const languages = [
   "en", // 英語
   "zh", // 中国語
@@ -42,7 +42,7 @@ export interface LanguageChoice extends ChoiceModel {
   name: string
 }
 
-const getBrowserLanguage = () => {
+export const getBrowserLanguage = () => {
   const browserLanguage = window.navigator.language
   const found = languages.find((language) => {
     return browserLanguage.startsWith(language)
