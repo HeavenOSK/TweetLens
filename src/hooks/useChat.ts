@@ -4,7 +4,7 @@ import { useState } from "react"
 
 import { Storage } from "@plasmohq/storage"
 
-import { defaultPrompt } from "./useButtonProps"
+import { defaultPrompt, STORAGE_KEY_BUTTON_PROPS } from "./useButtonProps"
 import { gpt4, STORAGE_KEY_GPT_MODEL } from "./useGptModel"
 import { getBrowserLanguage, STORAGE_KEY_LANGUAGE } from "./useLanguageSetting"
 import { STORAGE_KEY_OPEN_AI_API_KEY } from "./useOpenAIApiKey"
@@ -24,6 +24,16 @@ const getApiKey = async () => {
   const result = await storage.get(STORAGE_KEY_OPEN_AI_API_KEY)
   return result
 }
+const usePrompt = async () => {
+  const result = await storage.get(STORAGE_KEY_BUTTON_PROPS)
+  if (!result) return defaultPrompt
+  try {
+    const json = JSON.parse(result)
+    return json.prompt || defaultPrompt
+  } catch (e) {
+    return defaultPrompt
+  }
+}
 
 type Props = {
   apiKey?: string
@@ -33,21 +43,24 @@ export const useChat = ({ apiKey }: Props) => {
   const [result, setResult] = useState<string[] | null>(null)
 
   const streamCompletion = async (content: string) => {
-    const key = apiKey || process.env.PLASMO_PUBLIC_OPEN_AI_API_KEY
+    const key = apiKey
     if (!key) return
+    const model = await getModel()
+    const language = await getLanguage()
+    const prompt = await usePrompt()
     const openai = new OpenAI({
       apiKey: key,
       dangerouslyAllowBrowser: true
     })
-    const prompt = outdent`
-        以下ツイートの意味が分からないので解説してください。
+    const filledPrompt = outdent`
+        ${prompt || defaultPrompt}
+        output_language: ${language}
         ---
-        ${content}
-        `
+        ${content}`
     setResult([])
     const stream = await openai.chat.completions.create({
-      model: gpt4,
-      messages: [{ role: "user", content: prompt }],
+      model: model,
+      messages: [{ role: "user", content: filledPrompt }],
       stream: true
     })
     const streamed = []
@@ -87,10 +100,7 @@ export const useChatPreview = () => {
     })
     const language = await getLanguage()
     const model = await getModel()
-    console.log("language", language)
-    console.log("model", model)
-    console.log("apiKey", key)
-    console.log("prompt", prompt)
+
     const filledPrompt = outdent`
         ${prompt || defaultPrompt}
         output_language: ${language}
@@ -111,7 +121,6 @@ export const useChatPreview = () => {
     for await (const part of stream) {
       const newDiff = part.choices[0]?.delta?.content || ""
       if (newDiff !== "") {
-        console.log("newDiff", newDiff)
         streamed.push(newDiff)
         setResult([...streamed])
       }

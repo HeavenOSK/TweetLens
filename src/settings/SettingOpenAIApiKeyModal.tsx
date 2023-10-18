@@ -1,8 +1,7 @@
-import { Dialog, Transition } from "@headlessui/react"
+import { Dialog } from "@headlessui/react"
 import { useState } from "react"
 
 import BaseDialog from "~src/components/BaseDialog"
-import CancelButton from "~src/components/CancelButton"
 import ConfirmButton from "~src/components/ConfirmButton"
 import { type UseModal } from "~src/hooks/useModal"
 
@@ -48,7 +47,6 @@ const SettingOpenAIApiKeyModal = ({ isOpen, close, updateApiKey }: Props) => {
             label="設定"
             onClick={() => {
               // TODO: validationやっても良さそう
-              console.log("onClick")
               updateApiKey(apiKey)
               onClose()
             }}

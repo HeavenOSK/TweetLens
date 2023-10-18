@@ -3,6 +3,7 @@ import type { PlasmoCSConfig, PlasmoGetInlineAnchor } from "plasmo"
 
 import ResultView from "./components/ResultView"
 import TriggerButton from "./components/TriggerButton"
+import { useButtonProps } from "./hooks/useButtonProps"
 import { useChat } from "./hooks/useChat"
 import { useOpenAIApiKey } from "./hooks/useOpenAIApiKey"
 import { getCurrentTweetTextEl } from "./tweetDetail/TweetDetailInfo"
@@ -21,6 +22,7 @@ export const getStyle = () => {
 
 const CustomButton = () => {
   const { state } = useOpenAIApiKey()
+  const { buttonProps } = useButtonProps()
   const { streamCompletion, result } = useChat({
     apiKey: state.type === "loaded" ? state.apiKey : undefined
   })
@@ -37,7 +39,7 @@ const CustomButton = () => {
           {result !== null ? (
             <ResultView result={result} />
           ) : (
-            <TriggerButton label="ツイートを解説" onClick={onClick} />
+            <TriggerButton label={buttonProps.buttonName} onClick={onClick} />
           )}
         </div>
       ) : (
