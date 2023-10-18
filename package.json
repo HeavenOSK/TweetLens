@@ -1,6 +1,6 @@
 {
-  "name": "tweet-explanation-button",
-  "displayName": "Tweet explanation button",
+  "name": "tweet-lens",
+  "displayName": "TweetLens",
   "version": "0.0.1",
   "description": "It's an extension that allows you to add a button for explaining tweets.",
   "author": "heavenosk@gmail.com",

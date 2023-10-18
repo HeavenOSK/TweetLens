@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import ConfirmButton from "~src/components/ConfirmButton"
 import {
@@ -18,6 +18,12 @@ const SettingButtonProps = () => {
     savedButtonProps.buttonName || ""
   )
   const [prompt, setPrompt] = useState(savedButtonProps.prompt || "")
+
+  useEffect(() => {
+    setPrompt(savedButtonProps.prompt || "")
+    setButtonName(savedButtonProps.buttonName || "")
+    return () => {}
+  }, [savedButtonProps])
 
   const shouldSave = useMemo(() => {
     return (

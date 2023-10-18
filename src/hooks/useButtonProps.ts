@@ -37,6 +37,7 @@ export const useButtonProps = () => {
       try {
         const json = JSON.parse(value)
         if (json) {
+          console.log("json", json)
           setSavedButtonProps(json)
         }
       } catch (e) {

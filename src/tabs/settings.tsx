@@ -38,7 +38,7 @@ const Settings = () => {
   return (
     <div className="h-full w-full">
       <Container>
-        <h2 className="text-2xl font-bold">ツイートレンズ</h2>
+        <h2 className="text-2xl font-bold">TweetLens</h2>
       </Container>
       <div className="w-full h-1 border-b border-gray-200"></div>
       <Container>
